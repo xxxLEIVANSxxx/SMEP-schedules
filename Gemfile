@@ -21,6 +21,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'materialize-sass', '~> 1.0.0'
 gem 'material_icons'
 
+gem 'simple_form'
+gem 'materialize-form'
+
 
 
 gem "rubycritic", require: false
