@@ -22,6 +22,11 @@ gem 'materialize-sass', '~> 1.0.0'
 gem 'material_icons'
 
 
+
+gem "rubycritic", require: false
+gem 'rubocop', require: false
+
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
