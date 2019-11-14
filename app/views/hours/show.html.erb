@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @hour.time %>
+</p>
+
+<p>
+  <strong>Cost:</strong>
+  <%= @hour.cost %>
+</p>
+
+<p>
+  <strong>Arena:</strong>
+  <%= @hour.arena %>
+</p>
+
+<%= link_to 'Edit', edit_hour_path(@hour) %> |
+<%= link_to 'Back', hours_path %>

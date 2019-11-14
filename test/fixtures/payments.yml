@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  form: MyString
+  status: false
+  value: 9.99
+  shedule: one
+
+two:
+  form: MyString
+  status: false
+  value: 9.99
+  shedule: two

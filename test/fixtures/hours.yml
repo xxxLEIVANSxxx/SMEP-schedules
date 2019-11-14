@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  time: 2019-11-14 13:46:50
+  cost: 9.99
+  arena: one
+
+two:
+  time: 2019-11-14 13:46:50
+  cost: 9.99
+  arena: two
