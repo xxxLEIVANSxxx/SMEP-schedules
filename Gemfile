@@ -24,6 +24,7 @@ gem 'material_icons'
 
 gem 'simple_form'
 gem 'materialize-form'
+gem 'simple_form_materialize', '~>1.2.0'
 
 
 gem "rubycritic", require: false
@@ -34,7 +35,7 @@ gem 'rails-i18n', '~> 5.1', '>= 5.1.3'
 
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'devise-i18n', '~> 1.8', '>= 1.8.2'
-gem 'devise-bootstrap-views', '~> 1.1'
+gem 'devise_materialize', '~>1.2.0'
 
 
 # Use CoffeeScript for .coffee assets and views
