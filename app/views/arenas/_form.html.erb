@@ -16,9 +16,22 @@
     <%= form.text_field :name %>
   </div>
 
-  <div class="field">
-    <%= form.label :address_id %>
-    <%= form.text_field :address_id %>
+  <div class="input-field col s12">
+    <i class="material-icons prefix">person</i>
+    <%= form.text_field :number %>
+    <%= form.label :number %>
+  </div>
+
+  <div class="input-field col s12">
+    <i class="material-icons prefix">person</i>
+    <%= form.text_field :street %>
+    <%= form.label :street %>
+  </div>
+
+  <div class="input-field col s12">
+    <i class="material-icons prefix">person</i>
+    <%= form.text_field :neighborhood %>
+    <%= form.label :neighborhood %>
   </div>
 
   <div class="actions">

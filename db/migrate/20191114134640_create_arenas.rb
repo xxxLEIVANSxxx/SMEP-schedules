@@ -2,7 +2,9 @@ class CreateArenas < ActiveRecord::Migration[5.2]
   def change
     create_table :arenas do |t|
       t.string :name
-      t.references :address, foreign_key: true
+      t.integer :number
+      t.string :street
+      t.string :neighborhood
 
       t.timestamps
     end

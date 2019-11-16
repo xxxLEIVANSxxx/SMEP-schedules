@@ -12,20 +12,13 @@
 
 ActiveRecord::Schema.define(version: 2019_11_14_141632) do
 
-  create_table "addresses", force: :cascade do |t|
+  create_table "arenas", force: :cascade do |t|
+    t.string "name"
     t.integer "number"
     t.string "street"
     t.string "neighborhood"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "arenas", force: :cascade do |t|
-    t.string "name"
-    t.integer "address_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["address_id"], name: "index_arenas_on_address_id"
   end
 
   create_table "hours", force: :cascade do |t|
@@ -59,7 +52,9 @@ ActiveRecord::Schema.define(version: 2019_11_14_141632) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "cpf"
-    t.integer "address_id"
+    t.integer "number"
+    t.string "street"
+    t.string "neighborhood"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
@@ -67,7 +62,6 @@ ActiveRecord::Schema.define(version: 2019_11_14_141632) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
