@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  layout 'main'
 
   # GET /users
   # GET /users.json
-  def index
+  def index    
     @users = User.all
   end
 

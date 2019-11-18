@@ -1,5 +1,6 @@
 class ArenasController < ApplicationController
   before_action :set_arena, only: [:show, :edit, :update, :destroy]
+  layout 'main'
 
   # GET /arenas
   # GET /arenas.json
