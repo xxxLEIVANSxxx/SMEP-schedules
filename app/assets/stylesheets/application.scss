@@ -2,3 +2,7 @@
 $primary-color: color("blue", "lighten-2") !default;
 $secondary-color: color("yellow", "base") !default;
 @import 'materialize';
+
+.header {
+    font-weight: 300 !important;
+}

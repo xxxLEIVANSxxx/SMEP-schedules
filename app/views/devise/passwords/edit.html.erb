@@ -15,7 +15,7 @@
             <%= f.hidden_field :reset_password_token %>
             <div class="input-field col s12">
               <i class="material-icons prefix">lock</i>
-              <%= f.password_field :password, autofocus: true, required: true, autocomplete: false %>
+              <%= f.password_field :password, autofocus: true, autocomplete: false %>
               <%= f.label :password %>
               <span class="help-text">
                 <%= @minimum_password_length %>
@@ -24,7 +24,7 @@
             </div>
             <div class="input-field col s12">
               <i class="material-icons prefix">lock</i>
-              <%= f.password_field :password_confirmation, autofocus: true, required: true, autocomplete: false %>
+              <%= f.password_field :password_confirmation, autofocus: true, autocomplete: false %>
               <%= f.label :password_confirmation %>
             </div>
           </div>
