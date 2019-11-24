@@ -1,3 +1,3 @@
 class Payment < ApplicationRecord
-  belongs_to :shedule
+  belongs_to :schedule
 end

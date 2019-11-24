@@ -1,9 +1,10 @@
 class Schedule < ApplicationRecord
   belongs_to :user
   belongs_to :hour
+  has_many :payments
 
   def payment_status?
-    hour.cost <= Payment.where(:schedule_id => id).where(:status => "true").sum(:value)
+    hour.cost <= payments.where(:status => "true").sum(:value)
   end
 
   def payment_status!
