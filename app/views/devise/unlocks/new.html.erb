@@ -1,16 +1,10 @@
 <div class="row login-form">
-  <div class="col s12 m6 offset-m3">
+  <div class="col s12 m10 offset-m1 l6 offset-l3">
     <div class="card hoverable">
       <div class="card-content">
         <span class="card-title center">Resend Unlock Instructions</span>
         <%= form_for resource, as: resource_name, url: unlock_path(resource_name),
           html: { method: :post } do |f| %>
-          <% if devise_error_messages? || alert %>
-            <div class="form-errors red lighten-1">
-              <%= devise_error_messages! %>
-              <%= alert %>
-            </div>
-          <% end %>
           <div class="form-inputs row">
             <div class="input-field col s12">
               <i class="material-icons prefix">email</i>

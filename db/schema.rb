@@ -34,10 +34,10 @@ ActiveRecord::Schema.define(version: 2019_11_18_125956) do
     t.string "form"
     t.boolean "status"
     t.decimal "value"
-    t.integer "shedule_id"
+    t.integer "schedule_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["shedule_id"], name: "index_payments_on_shedule_id"
+    t.index ["schedule_id"], name: "index_payments_on_schedule_id"
   end
 
   create_table "schedules", force: :cascade do |t|

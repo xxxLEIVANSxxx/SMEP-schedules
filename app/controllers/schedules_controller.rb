@@ -5,6 +5,7 @@ class SchedulesController < ApplicationController
   # GET /schedules
   # GET /schedules.json
   def index
+    @payments = Payment.all
     @schedules = Schedule.all
   end
 

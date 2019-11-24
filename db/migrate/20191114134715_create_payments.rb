@@ -4,7 +4,7 @@ class CreatePayments < ActiveRecord::Migration[5.2]
       t.string :form
       t.boolean :status
       t.decimal :value
-      t.references :shedule, foreign_key: true
+      t.references :schedule, foreign_key: true
 
       t.timestamps
     end

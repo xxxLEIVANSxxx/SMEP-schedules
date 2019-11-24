@@ -25,12 +25,20 @@
       </div>
     </header>
     <%= yield %>
-    <% if devise_error_messages? || alert %>
-      <% if devise_error_messages? %>
-        <script  type="text/javascript">M.toast({html: "Errors"})</script>
-      <% else %>
-        <script  type="text/javascript">M.toast({html: "<%= alert %>"})</script>
-      <% end %>
+    <% if devise_error_messages? || alert || (devise_mapping.confirmable? && resource.pending_reconfirmation?) %>
+      <script  type="text/javascript">
+        <% if devise_error_messages? %>
+          <% devise_error_messages!.each do |msg| %>
+            M.toast({html: "<%= msg %>"});
+          <% end %>
+        <% end %>
+        <% if alert %>
+          M.toast({html: "<%= alert %>"});
+        <% end %>
+        <% if (devise_mapping.confirmable? && resource.pending_reconfirmation?) %>
+            M.toast({html: "Currently waiting confirmation for: <%= resource.unconfirmed_email %>"});
+        <% end %>
+      </script>
     <% end %>
   </body>
 </html>
