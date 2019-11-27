@@ -5,10 +5,12 @@ class Ability
 
   def initialize(user)
     user ||= User.new # guest user (not logged in)
-    if user.admin?
+    can :read, :all # permissions for every user, even if not logged in    
+    if user.present?  # additional permissions for logged in users (they can manage their posts)
       can :manage, :all
-    else
-      can :read, :all
+      if user.admin?  # additional permissions for administrators
+        can :manage, :all
+      end
     end
 
     # Define abilities for the passed in user here. For example:

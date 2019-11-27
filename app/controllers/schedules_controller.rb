@@ -5,7 +5,11 @@ class SchedulesController < ApplicationController
   # GET /schedules
   # GET /schedules.json
   def index
-    @schedules = Schedule.all
+    if current_user.admin
+      @schedules = Schedule.all
+    else
+      @schedules = Schedule.where :user_id => current_user.id
+    end
   end
 
   # GET /schedules/1
@@ -15,6 +19,10 @@ class SchedulesController < ApplicationController
 
   # GET /schedules/new
   def new
+    if current_user.admin
+      @users = User.all
+    end
+    @hours = Hour.joins(:schedules).where(schedules: {:status => 'false'})
     @schedule = Schedule.new
   end
 
@@ -26,6 +34,10 @@ class SchedulesController < ApplicationController
   # POST /schedules.json
   def create
     @schedule = Schedule.new(schedule_params)
+    
+    if !current_user.admin
+      @schedule.user_id = current_user.id
+    end
 
     respond_to do |format|
       if @schedule.save

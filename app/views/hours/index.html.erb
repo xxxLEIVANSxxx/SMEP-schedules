@@ -16,8 +16,8 @@
       <tr>
         <td><%= hour.arena.name %></td>        
         <td>R$ <%= hour.cost %></td>
-        <td><%= hour.time.strftime('%d-%m-%Y') %></td>
-        <td><%= hour.time.hour %>:00h as <%= hour.time.hour+1 %>:00h</td>        
+        <td><%= hour.date! %></td>
+        <td><%= hour.period! %></td>        
         <td><%= link_to 'Show', hour %></td>
         <td><%= link_to 'Edit', edit_hour_path(hour) %></td>
         <td><%= link_to 'Destroy', hour, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -7,11 +7,13 @@ class Schedule < ApplicationRecord
     hour.cost <= payments.where(:status => "true").sum(:value)
   end
 
-  def payment_status!
-    if payment_status?
+  def status!
+    if hour.status?(user.id) && payment_status?
       "Confirmed"
-    else      
+    elsif !payment_status?
       "Pending payment"
+    else 
+      "Canceled"
     end
   end
 end

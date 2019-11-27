@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2019_11_18_125956) do
   end
 
   create_table "schedules", force: :cascade do |t|
+    t.boolean "status"
     t.integer "user_id"
     t.integer "hour_id"
     t.datetime "created_at", null: false

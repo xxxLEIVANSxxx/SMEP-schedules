@@ -17,9 +17,9 @@
       <tr>
         <td><%= schedule.user.name %></td>
         <td><%= schedule.hour.arena.name %></td>
-        <td><%= schedule.hour.time.strftime('%d-%m-%Y') %></td>
-        <td><%= schedule.hour.time.hour %>:00h as <%= schedule.hour.time.hour+1 %>:00h</td>
-        <td><%= schedule.payment_status! %></td>
+        <td><%= schedule.hour.date! %></td>
+        <td><%= schedule.hour.period! %></td>
+        <td><%= schedule.status! %></td>
         <% if !schedule.payment_status? %>
           <td><%= link_to 'Pay', schedule %></td>
         <% end %>
