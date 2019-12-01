@@ -43,6 +43,9 @@ gem 'devise_materialize', '~>1.2.0'
 gem 'cancancan', '~> 3.0', '>= 3.0.1'
 
 
+gem 'validates_cpf_cnpj'
+
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

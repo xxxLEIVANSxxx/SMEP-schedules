@@ -3,7 +3,7 @@ module DeviseHelper
   def devise_error_messages!
     return "" unless devise_error_messages?
 
-    resource.errors.full_messages
+    resource.errors
   end
 
   def devise_error_messages?

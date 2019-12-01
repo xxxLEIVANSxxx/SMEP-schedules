@@ -7,38 +7,56 @@
           <div class="row">
             <div class="input-field col s12">
               <i class="material-icons prefix">person</i>
-              <%= f.text_field :name, autofocus: true %>
+              <%= f.text_field :name, autofocus: true, class: (resource.errors[:name].count != 0 ? "validate invalid" : "") %>
               <%= f.label :name %>
+              <% resource.errors[:name].each do |message| %>
+                <span class="helper-text" data-error="Name <%= message %>"></span>
+              <% end %>
             </div>
             <div class="input-field col s12">
               <i class="material-icons prefix">email</i>
-              <%= f.email_field :email, autofocus: true, class: "validate" %>
+              <%= f.email_field :email, class: (resource.errors[:email].count != 0 ? "validate invalid" : "validate") %>
               <%= f.label :email %>
-              <span class="helper-text" data-error="wrong" data-success="right"></span>
+              <span class="helper-text" data-error="Wrong" data-success="Right"></span>
+              <% resource.errors[:email].each do |message| %>
+                <span class="helper-text" data-error="Email <%= message %>"></span>
+              <% end %>
             </div>
             <div class="input-field col s12">
               <i class="material-icons prefix">credit_card</i>
-              <%= f.text_field :cpf, autofocus: true %>
+              <%= f.text_field :cpf, class: (resource.errors[:cpf].count != 0 ? "validate invalid" : "") %>
               <%= f.label :cpf %>
+              <% resource.errors[:cpf].each do |message| %>
+                <span class="helper-text" data-error="CPF <%= message %>"></span>
+              <% end %>
             </div>
             <div class="input-field col s12">
               <i class="material-icons prefix">map</i>
-              <%= f.text_field :address, autofocus: true %>
+              <%= f.text_field :address, class: (resource.errors[:address].count != 0 ? "validate invalid" : "") %>
               <%= f.label :address %>
+              <% resource.errors[:address].each do |message| %>
+                <span class="helper-text" data-error="Address <%= message %>"></span>
+              <% end %>
             </div>          
             <div class="input-field col s12">
               <i class="material-icons prefix">lock</i>
-              <%= f.password_field :password, autocomplete: "off" %>
+              <%= f.password_field :password, autocomplete: "off", class: (resource.errors[:password].count != 0 ? "validate invalid" : "") %>
               <%= f.label :password %>
               <span class="helper-text">
                 <%= @minimum_password_length %>
                 Characters Minimum
               </span>
+              <% resource.errors[:password].each do |message| %>
+                <span class="helper-text" data-error="Password <%= message %>"></span>
+              <% end %>
             </div>
             <div class="input-field col s12">
               <i class="material-icons prefix">lock</i>
-              <%= f.password_field :password_confirmation, autocomplete: "off" %>
+              <%= f.password_field :password_confirmation, autocomplete: "off", class: (resource.errors[:password_confirmation].count != 0 ? "validate invalid" : "") %>
               <%= f.label :password_confirmation %>
+              <% resource.errors[:password_confirmation].each do |message| %>
+                <span class="helper-text" data-error="Password confirmation <%= message %>"></span>
+              <% end %>
             </div>
           </div>
           <div class="form-actions center">

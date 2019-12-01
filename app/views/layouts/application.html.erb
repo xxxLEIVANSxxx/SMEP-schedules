@@ -28,9 +28,7 @@
     <% if devise_error_messages? || alert || (devise_mapping.confirmable? && resource.pending_reconfirmation?) %>
       <script  type="text/javascript">
         <% if devise_error_messages? %>
-          <% devise_error_messages!.each do |msg| %>
-            M.toast({html: "<%= msg %>"});
-          <% end %>
+          M.toast({html: "Fill out the form correctly"});
         <% end %>
         <% if alert %>
           M.toast({html: "<%= alert %>"});
