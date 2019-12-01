@@ -6,43 +6,64 @@
           Edit
           <%= resource_name.to_s.humanize %>
         </span>
-        <div class="divider"></div>
         <%= form_for resource, as: resource_name, url: registration_path(resource_name), html: { method: :put } do |f| %>
-          <div class="form-inputs row">
+          <div class="row">
             <div class="input-field col s12">
-              <i class="material-icons prefix">email</i>
-              <%= f.email_field :email, autofocus: true %>
-              <%= f.label :email %>
+              <i class="material-icons prefix">person</i>
+              <%= f.text_field :name, autofocus: true %>
+              <%= f.label :name %>
             </div>
             <div class="input-field col s12">
+              <i class="material-icons prefix">email</i>
+              <%= f.email_field :email, autofocus: true, class: "validate" %>
+              <%= f.label :email %>
+              <span class="helper-text" data-error="wrong" data-success="right"></span>
+            </div>
+            <div class="input-field col s12">
+              <i class="material-icons prefix">credit_card</i>
+              <%= f.text_field :cpf, autofocus: true %>
+              <%= f.label :cpf %>
+            </div>
+            <div class="input-field col s12">
+              <i class="material-icons prefix">map</i>
+              <%= f.text_field :address, autofocus: true %>
+              <%= f.label :address %>
+            </div>                 
+            <div class="input-field col s12">
+              <i class="material-icons prefix">lock</i>
               <%= f.password_field :password, autocomplete: "off" %>
-              <%= f.label :password, %>
-                "Password (leave blank if you don't want to change it)"
-              <span class="hint-text">
+              <%= f.label :password %>
+              <span class="helper-text">
                 <%= @minimum_password_length %>
                 Characters Minimum
               </span>
             </div>
             <div class="input-field col s12">
+              <i class="material-icons prefix">lock</i>
               <%= f.password_field :password_confirmation, autocomplete: "off" %>
               <%= f.label :password_confirmation %>
             </div>
             <div class="input-field col s12">
+              <i class="material-icons prefix">lock</i>
               <%= f.password_field :current_password, autocomplete: "off" %>
               <%= f.label :current_password %>
-              <span class="hint-text">
-                we need your current password to confirm your changes
+              <span class="helper-text">
+                We need your current password to confirm your changes
               </span>
-            </div>
+            </div> 
           </div>
           <div class="form-actions center">
             <%= f.submit "Update", class: "btn waves-effect" %>
           </div>
         <% end %>
       </div>
-      <div class="card-action center">
-        <%= render "devise/shared/links" %>
+      <div class="card-action">
+        <%= link_to('Schedules', root_path) %>
       </div>
     </div>
   </div>
 </div>
+
+
+
+

@@ -3,7 +3,9 @@
 <table class="highlight">
   <thead>
     <tr>
-      <th>User</th>
+      <% if current_user.admin %>
+        <th>User</th>
+      <% end %>
       <th>Arena</th>
       <th>Date</th>
       <th>Hour</th>
@@ -15,7 +17,9 @@
   <tbody>
     <% @schedules.each do |schedule| %>
       <tr>
-        <td><%= schedule.user.name %></td>
+        <% if current_user.admin %>
+          <td><%= schedule.user.name %></td>
+        <% end %>
         <td><%= schedule.hour.arena.name %></td>
         <td><%= schedule.hour.date! %></td>
         <td><%= schedule.hour.period! %></td>

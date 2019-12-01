@@ -21,7 +21,7 @@
         </li>
         <li class="bold">
           <%= link_to('Schedules', root_path) %>
-        </li>
+        </li>             
         <% if current_user.admin %>
           <li class="bold">
             <%= link_to('Hours', hours_path) %>
@@ -33,7 +33,9 @@
             <%= link_to('Users', users_path) %>
           </li>
         <% end %>
-
+        <li class="bold">
+          <%= link_to "Update your information", edit_user_registration_path %>
+        </li>
         <li class="bold">
           <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
         </li>
