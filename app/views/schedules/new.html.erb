@@ -9,9 +9,9 @@
 <p class="header">Click on the available hour in the calendar of the desired arena.</p>
 
 <% @arenas.each do |arena| %>
-    <p class="header right"><%= @date.strftime('%B of %Y') %></p>
-    <div id="calendar-arena-<%= arena.id %>"></div>
-    <p class="header"><%= arena.name %></p>  
+    <p class="header right"><%= @date.strftime('%B of %Y') %></p> 
+    <%= sync partial: 'arena', resource: arena %>
+    <p class="header"><%= arena.name %></p> 
 <% end %>
 
 <%= render 'form', schedule: @schedule %>

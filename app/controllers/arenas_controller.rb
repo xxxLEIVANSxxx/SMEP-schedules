@@ -1,6 +1,7 @@
 class ArenasController < ApplicationController
+  #enable_sync only: [:create, :update, :destroy]
   before_action :set_arena, only: [:show, :edit, :update, :destroy]
-  layout 'main'
+  layout 'main'  
 
   # GET /arenas
   # GET /arenas.json
@@ -29,6 +30,7 @@ class ArenasController < ApplicationController
 
     respond_to do |format|
       if @arena.save
+        sync_new @arena
         format.html { redirect_to @arena, notice: 'Arena was successfully created.' }
         format.json { render :show, status: :created, location: @arena }
       else
@@ -55,11 +57,21 @@ class ArenasController < ApplicationController
   # DELETE /arenas/1
   # DELETE /arenas/1.json
   def destroy
-    @arena.destroy
-    respond_to do |format|
-      format.html { redirect_to arenas_url, notice: 'Arena was successfully destroyed.' }
-      format.json { head :no_content }
+    if @arena.hours.count == 0
+      @arena.destroy
+      respond_to do |format|
+        format.html { redirect_to arenas_url, notice: 'Arena was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to arenas_url, notice: 'You can\'t destroy this arena.' }
+        format.json { head :no_content }
+      end
     end
+  end
+
+  def faye
   end
 
   private

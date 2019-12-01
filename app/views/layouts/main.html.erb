@@ -11,6 +11,7 @@
     
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= include_sync_config %>
   </head>
 
   <body>
@@ -50,31 +51,6 @@
     <script>
       <% if notice %>
         M.toast({html: "<%= notice %>"});
-      <% end %>
-
-      <% if @arenas %>
-        <% @arenas.each do |arena| %>
-          $("#calendar-arena-<%= arena.id %>").fullCalendar({
-              locale: 'en',
-              defaultDate: '<%= @date %>',
-              schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
-              events: [
-                  <% arena.current_hours.each do |hour| %>
-                      <% if hour.available? %>
-                          {
-                              id: '<%= hour.id %>',
-                              title: '<%= hour.period! %>',
-                              start: '<%= hour.date %>'
-                          },
-                      <% end %>
-                  <% end %>
-              ],
-              eventClick: function(calEvent, jsEvent, view) {
-                  $('#schedule_hour_id').val(calEvent.id);
-                  $('#schedule_form').submit();
-              }
-          });        
-        <% end %>
       <% end %>
       $('.fc-left').hide();
     </script>

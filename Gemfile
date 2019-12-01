@@ -43,6 +43,11 @@ gem 'devise_materialize', '~>1.2.0'
 gem 'cancancan', '~> 3.0', '>= 3.0.1'
 
 
+gem 'thin', '~> 1.6'
+gem 'faye', '~> 1.1'
+gem 'render_sync', '~> 0.5.0'
+
+
 gem 'validates_cpf_cnpj'
 
 
