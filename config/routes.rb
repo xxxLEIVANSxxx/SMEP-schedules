@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users
   
   resources :schedules
+  resources :payments
   resources :hours
   resources :arenas do
     get :faye, on: :collection

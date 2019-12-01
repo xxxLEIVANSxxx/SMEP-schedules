@@ -1,0 +1,4 @@
+{
+    "docker-linter.rubocop.code": 1,
+    "docker-linter.rubocop.container": "smep_schedules_development_1"
+}
