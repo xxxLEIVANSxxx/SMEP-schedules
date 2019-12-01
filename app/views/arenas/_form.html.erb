@@ -1,40 +1,23 @@
 <%= form_with(model: arena, local: true) do |form| %>
-  <% if arena.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(arena.errors.count, "error") %> prohibited this arena from being saved:</h2>
-
-      <ul>
-      <% arena.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
+  <div class="input-field col s12">
+    <i class="material-icons prefix">person</i>
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, :class => (arena.errors[:name].count != 0 ? "validate invalid" : "") %>
+    <% arena.errors[:name].each do |message| %>
+      <span class="helper-text" data-error="Name <%= message %>"></span>
+    <% end %>
   </div>
 
   <div class="input-field col s12">
     <i class="material-icons prefix">person</i>
-    <%= form.text_field :number %>
-    <%= form.label :number %>
+    <%= form.text_field :address, :class => (arena.errors[:address].count != 0 ? "validate invalid" : "")  %>
+    <%= form.label :address %>
+    <% arena.errors[:address].each do |message| %>
+      <span class="helper-text" data-error="Address <%= message %>"></span>
+    <% end %>
   </div>
 
-  <div class="input-field col s12">
-    <i class="material-icons prefix">person</i>
-    <%= form.text_field :street %>
-    <%= form.label :street %>
-  </div>
-
-  <div class="input-field col s12">
-    <i class="material-icons prefix">person</i>
-    <%= form.text_field :neighborhood %>
-    <%= form.label :neighborhood %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div>
+    <%= form.submit "Submit", :class => "btn" %>
   </div>
 <% end %>

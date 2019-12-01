@@ -6,11 +6,15 @@ class Hour < ApplicationRecord
     schedules.where(:user_id => user_id).where(:status => 'true').count != 0
   end
 
+  def available?
+    schedules.where(:status => 'true').count == 0
+  end
+
   def period!
     "#{time.hour}:00h as #{time.hour+1}:00h"
   end
 
   def date!
-    time.strftime('%d-%m-%Y')
+    date.strftime('%d-%m-%Y')
   end
 end

@@ -1,17 +1,17 @@
-<h1 class="header">New Schedule</h1>
+<header>
+    <div class="top-nav">
+        <div class="nav-wrapper">
+            <h3 class="header">New Schedule</h3>                                      
+        </div>
+    </div>    
+</header>
 
-<% @hours.each do |hour| %>
-  <tr>
-    <td><%= hour.arena.name %></td>        
-    <td>R$ <%= hour.cost %></td>
-    <td><%= hour.date! %></td>
-    <td><%= hour.period! %></td>        
-    <td><%= link_to 'Show', hour %></td>
-    <td><%= link_to 'Edit', edit_hour_path(hour) %></td>
-    <td><%= link_to 'Destroy', hour, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<p class="header">Click on the available hour in the calendar of the desired arena.</p>
+
+<% @arenas.each do |arena| %>
+    <p class="header right"><%= @date.strftime('%B of %Y') %></p>
+    <div id="calendar-arena-<%= arena.id %>"></div>
+    <p class="header"><%= arena.name %></p>  
 <% end %>
 
 <%= render 'form', schedule: @schedule %>
-
-<%= link_to 'Back', schedules_path %>

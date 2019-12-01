@@ -14,15 +14,14 @@ ActiveRecord::Schema.define(version: 2019_11_18_125956) do
 
   create_table "arenas", force: :cascade do |t|
     t.string "name"
-    t.integer "number"
-    t.string "street"
-    t.string "neighborhood"
+    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "hours", force: :cascade do |t|
     t.time "time"
+    t.date "date"
     t.decimal "cost"
     t.integer "arena_id"
     t.datetime "created_at", null: false
@@ -32,7 +31,7 @@ ActiveRecord::Schema.define(version: 2019_11_18_125956) do
 
   create_table "payments", force: :cascade do |t|
     t.string "form"
-    t.boolean "status"
+    t.boolean "status", default: false
     t.decimal "value"
     t.integer "schedule_id"
     t.datetime "created_at", null: false
@@ -53,9 +52,7 @@ ActiveRecord::Schema.define(version: 2019_11_18_125956) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "cpf"
-    t.integer "number"
-    t.string "street"
-    t.string "neighborhood"
+    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false

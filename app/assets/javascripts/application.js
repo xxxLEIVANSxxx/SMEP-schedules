@@ -17,12 +17,17 @@
 //= require materialize-form
 //= require activestorage
 //= require turbolinks
+//= require calendar
 //= require_tree .
 
 $(document).ready(function() {
     M.AutoInit();
 
+    fixBugsDeviseMaterialize();    
+});
 
+// TO DO
+function fixBugsDeviseMaterialize() {
     let div = $('.field_with_errors').parent();
     let elements = [];
     let i = 0;
@@ -41,4 +46,4 @@ $(document).ready(function() {
         i += 2;
     });
     $('.character-counter').remove();
-});
+}

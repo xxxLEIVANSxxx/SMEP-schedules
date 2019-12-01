@@ -4,9 +4,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Street</th>
-      <th>Neighborhood</th>
-      <th>Number</th>
+      <th>Address</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,12 +13,10 @@
     <% @arenas.each do |arena| %>
       <tr>
         <td><%= arena.name %></td>
-        <td><%= arena.street %></td>
-        <td><%= arena.neighborhood %></td>
-        <td><%= arena.number %></td>
-        <td><%= link_to 'Show', arena %></td>
-        <td><%= link_to 'Edit', edit_arena_path(arena) %></td>
-        <td><%= link_to 'Destroy', arena, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= arena.address %></td>
+        <td><%= link_to 'Show', arena, :class => "btn-flat" %></td>
+        <td><%= link_to 'Edit', edit_arena_path(arena), :class => "btn-flat" %></td>
+        <td><%= link_to 'Destroy', arena, method: :delete, data: { alert: 'Are you sure?' }, :class => "btn-flat" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Arena', new_arena_path %>
+<%= link_to 'New Arena', new_arena_path, :class => "btn-flat" %>

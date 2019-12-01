@@ -70,6 +70,6 @@ class ArenasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def arena_params
-      params.require(:arena).permit(:name, :number, :street, :neighborhood)
+      params.require(:arena).permit(:name, :address)
     end
 end

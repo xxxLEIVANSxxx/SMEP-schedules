@@ -2,6 +2,7 @@
 $primary-color: color("blue", "lighten-2") !default;
 $secondary-color: color("yellow", "base") !default;
 @import 'materialize';
+@import "calendar";
 
 .header {
     font-weight: 300 !important;
@@ -11,3 +12,8 @@ $secondary-color: color("yellow", "base") !default;
     width: 100%;
     border-bottom: 1px solid rgba(0,0,0,0.14);
 }
+
+.fc-content {
+    cursor: pointer;
+}
+
