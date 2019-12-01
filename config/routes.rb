@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :users
   
   resources :schedules
-  resources :payments
+  post 'payments' => 'payments#create'
   resources :hours
   resources :arenas do
     get :faye, on: :collection

@@ -7,19 +7,25 @@ class PaymentsController < ApplicationController
   # POST /payments.json
   def create
     @payment = Payment.new(payment_params)
-    @payment.status = "true"    
     respond_to do |format|
-      if @payment.save
-        Schedule.find(@payment.schedule_id).update(status: "true")
-        format.html { redirect_to schedules_url, notice: 'Payment was successfully created.' }
-        format.json { render :show, status: :created, location: @payment }
+      if @payment.schedule.user.can_schedule?
+        @payment.status = "true"    
+        
+        if @payment.save
+          Schedule.find(@payment.schedule_id).update(status: "true")
+          format.html { redirect_to schedules_url, notice: 'Payment was successfully created.' }
+          format.json { render @payment, status: :created, location: @payment }
+        else
+          format.html { redirect_to schedules_url, notice: 'Unable to pay.' }
+          format.json { render json: @payment.errors, status: :unprocessable_entity }
+        end
       else
-        # format.html { render :new }
-        # format.json { render json: @payment.errors, status: :unprocessable_entity }
+        format.html { redirect_to schedules_url, notice: 'You already have two current appointments.' }
+        format.json { render json: @payment, status: :unprocessable_entity }
       end
     end
   end
-  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_payment

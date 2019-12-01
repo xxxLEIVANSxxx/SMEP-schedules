@@ -9,15 +9,24 @@ class SchedulesController < ApplicationController
   # GET /schedules.json
   def index
     if current_user.admin
-      @schedules = Schedule.all
+      @schedules = Schedule.all.joins(:hour).order(date: :desc)
     else
-      @schedules = Schedule.where :user_id => current_user.id
+      @schedules = Schedule.joins(:hour).where(:user_id => current_user.id).order(date: :desc)
     end
   end
 
   # GET /schedules/1
   # GET /schedules/1.json
   def show
+    respond_to do |format|
+      if !@schedule.status?      
+          format.html { redirect_to schedules_url }
+          format.json { head :no_content }
+      else
+        format.html { render :show }
+        format.json { head :no_content }
+      end
+    end
   end
 
   # GET /schedules/new
@@ -34,26 +43,28 @@ class SchedulesController < ApplicationController
   def create
     @schedule = Schedule.new(schedule_params)
     
-    if !current_user.admin
-      @schedule.user_id = current_user.id
-
-      respond_to do |format|
-        if @schedule.save
-          format.html { redirect_to @schedule, notice: 'Schedule was successfully created.' }
-          format.json { render :show, status: :created, location: @schedule }
+    respond_to do |format|
+      if !current_user.admin
+        @schedule.user_id = current_user.id
+        if @schedule.user.can_schedule?         
+          @schedule.status = @schedule.hour.cost == 0
+                
+          if @schedule.save
+            format.html { redirect_to @schedule, notice: 'Schedule was successfully created.' }
+            format.json { render :show, status: :created, location: @schedule }
+          else
+            format.html { redirect_to :new_schedule, notice: @schedule.errors[:user_id].first }
+            format.json { render json: @schedule.errors, status: :unprocessable_entity }
+          end
         else
-          format.html { redirect_to :new_schedule, notice: @schedule.errors[:user_id].first }
-          format.json { render json: @schedule.errors, status: :unprocessable_entity }
+          format.html { redirect_to :new_schedule, notice: 'You already have two current appointments.' }
+          format.json { render :new, status: :unprocessable_entity }
         end
-      end
-    else
-      respond_to do |format|
+      else
         format.html { redirect_to :new_schedule, notice: 'Only users can make appointments.' }
         format.json { render :new, status: :unprocessable_entity }
       end
-    end
-
-    
+    end    
   end
 
   # PATCH/PUT /schedules/1
