@@ -3,6 +3,7 @@ class Hour < ApplicationRecord
   has_many :schedules
 
   validates_presence_of :arena, :date, :time, :cost
+  validates_uniqueness_of :time, scope: [:date, :arena], message: "This time is already registered for this arena."
 
   def status?(user_id)
     schedules.where(:user_id => user_id).where(:status => 'true').count != 0

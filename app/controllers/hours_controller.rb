@@ -34,6 +34,7 @@ class HoursController < ApplicationController
         format.html { redirect_to hours_url, notice: 'Hour was successfully created.' }
         format.json { render :show, status: :created, location: @hour }
       else
+        @arenas = Arena.all
         format.html { render :new }
         format.json { render json: @hour.errors, status: :unprocessable_entity }
       end
@@ -48,6 +49,7 @@ class HoursController < ApplicationController
         format.html { redirect_to hours_url, notice: 'Hour was successfully updated.' }
         format.json { render :show, status: :ok, location: @hour }
       else
+        @arenas = Arena.all
         format.html { render :edit }
         format.json { render json: @hour.errors, status: :unprocessable_entity }
       end
