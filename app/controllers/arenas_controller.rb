@@ -31,7 +31,7 @@ class ArenasController < ApplicationController
     respond_to do |format|
       if @arena.save
         sync_new @arena
-        format.html { redirect_to @arena, notice: 'Arena was successfully created.' }
+        format.html { redirect_to arenas_url, notice: 'Arena was successfully created.' }
         format.json { render :show, status: :created, location: @arena }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class ArenasController < ApplicationController
   def update
     respond_to do |format|
       if @arena.update(arena_params)
-        format.html { redirect_to @arena, notice: 'Arena was successfully updated.' }
+        format.html { redirect_to arenas_url, notice: 'Arena was successfully updated.' }
         format.json { render :show, status: :ok, location: @arena }
       else
         format.html { render :edit }

@@ -17,3 +17,7 @@ $secondary-color: color("yellow", "base") !default;
     cursor: pointer;
 }
 
+.dropdown-content li > a, .dropdown-content li > span {
+    color: black;
+}
+

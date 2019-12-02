@@ -1,5 +1,7 @@
 <h1 class="header">Hours</h1>
 
+<%= link_to 'New Hour', new_hour_path, class: "btn-flat teal lighten-5" %>
+
 <table class="highlight">
   <thead>
     <tr>
@@ -17,15 +19,10 @@
         <td><%= hour.arena.name %></td>        
         <td>R$ <%= hour.cost %></td>
         <td><%= hour.date! %></td>
-        <td><%= hour.period! %></td>        
-        <td><%= link_to 'Show', hour %></td>
-        <td><%= link_to 'Edit', edit_hour_path(hour) %></td>
-        <td><%= link_to 'Destroy', hour, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= hour.period! %></td>
+        <td><%= link_to 'Edit', edit_hour_path(hour), :class => "btn-flat blue lighten-5" %></td>
+        <td><%= link_to 'Destroy', hour, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn-flat deep-orange accent-1" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Hour', new_hour_path %>

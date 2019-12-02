@@ -1,37 +1,41 @@
 <%= form_with(model: hour, local: true) do |form| %>
-  <% if hour.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(hour.errors.count, "error") %> prohibited this hour from being saved:</h2>
-
-      <ul>
-      <% hour.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+  <div class="input-field col s12">
+    <i class="material-icons prefix">golf_course</i>
+    <select name="hour[arena_id]" id="hour_arena_id">
+      <option value="" disabled selected>Choose arena</option>
+      <% @arenas.each do |arena| %>      
+        <option value="<%= arena.id %>"><%= arena.name %></option>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :time %>
-    <%= form.time_select :time %>
+    </select>
+    <label>Arena</label>
   </div>
 
-  <div class="field">
+  <div class="input-field col s12">
+    <i class="material-icons prefix">date_range</i>
     <%= form.label :date %>
-    <%= form.date_select :date %>
+    <%= form.text_field :date, :class => (hour.errors[:date].count != 0 ? "validate invalid" : "") %>
+    <% hour.errors[:date].each do |message| %>
+      <span class="helper-text" data-error="Date <%= message %>"></span>
+    <% end %>
   </div>
 
-  <div class="field">
+  <div class="input-field col s12">
+    <i class="material-icons prefix">hourglass_empty</i>
+    <%= form.text_field :time, :class => (hour.errors[:time].count != 0 ? "validate invalid" : "")  %>
+    <%= form.label :time %>
+    <% hour.errors[:time].each do |message| %>
+      <span class="helper-text" data-error="Time <%= message %>"></span>
+    <% end %>
+  </div>
+
+  <div class="input-field col s12">
+    <i class="material-icons prefix">attach_money</i>
+    <%= form.text_field :cost, :class => (hour.errors[:cost].count != 0 ? "validate invalid" : "")  %>
     <%= form.label :cost %>
-    <%= form.text_field :cost %>
+    <% hour.errors[:cost].each do |message| %>
+      <span class="helper-text" data-error="Cost <%= message %>"></span>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :arena_id %>
-    <%= form.text_field :arena_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.submit 'Submit', class: "btn-flat teal lighten-5" %>
 <% end %>

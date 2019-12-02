@@ -1,6 +1,6 @@
 <%= form_with(model: arena, local: true) do |form| %>
   <div class="input-field col s12">
-    <i class="material-icons prefix">person</i>
+    <i class="material-icons prefix">golf_course</i>
     <%= form.label :name %>
     <%= form.text_field :name, :class => (arena.errors[:name].count != 0 ? "validate invalid" : "") %>
     <% arena.errors[:name].each do |message| %>
@@ -9,7 +9,7 @@
   </div>
 
   <div class="input-field col s12">
-    <i class="material-icons prefix">person</i>
+    <i class="material-icons prefix">map</i>
     <%= form.text_field :address, :class => (arena.errors[:address].count != 0 ? "validate invalid" : "")  %>
     <%= form.label :address %>
     <% arena.errors[:address].each do |message| %>
@@ -17,7 +17,5 @@
     <% end %>
   </div>
 
-  <div>
-    <%= form.submit "Submit", :class => "btn" %>
-  </div>
+  <%= form.submit 'Submit', class: "btn-flat teal lighten-5" %>
 <% end %>

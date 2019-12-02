@@ -5,7 +5,7 @@ class HoursController < ApplicationController
   # GET /hours
   # GET /hours.json
   def index
-    @hours = Hour.all
+    @hours = Hour.all.order(date: :desc)
   end
 
   # GET /hours/1
@@ -16,20 +16,22 @@ class HoursController < ApplicationController
   # GET /hours/new
   def new
     @hour = Hour.new
+    @arenas = Arena.all
   end
 
   # GET /hours/1/edit
   def edit
+    @arenas = Arena.all
   end
 
   # POST /hours
   # POST /hours.json
   def create
-    @hour = Hour.new(hour_params)
+    @hour = Hour.new(hour_params)    
 
     respond_to do |format|
       if @hour.save
-        format.html { redirect_to @hour, notice: 'Hour was successfully created.' }
+        format.html { redirect_to hours_url, notice: 'Hour was successfully created.' }
         format.json { render :show, status: :created, location: @hour }
       else
         format.html { render :new }
@@ -43,7 +45,7 @@ class HoursController < ApplicationController
   def update
     respond_to do |format|
       if @hour.update(hour_params)
-        format.html { redirect_to @hour, notice: 'Hour was successfully updated.' }
+        format.html { redirect_to hours_url, notice: 'Hour was successfully updated.' }
         format.json { render :show, status: :ok, location: @hour }
       else
         format.html { render :edit }

@@ -1,27 +1,21 @@
 <%= form_with(model: user, local: true) do |form| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
+  <div class="input-field col s12">
+    <i class="material-icons prefix">person</i>
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, :class => (user.errors[:name].count != 0 ? "validate invalid" : "") %>
+    <% user.errors[:name].each do |message| %>
+      <span class="helper-text" data-error="Name <%= message %>"></span>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :cpf %>
-    <%= form.text_field :cpf %>
+  <div class="input-field col s12">
+    <i class="material-icons prefix">map</i>
+    <%= form.text_field :address, :class => (user.errors[:address].count != 0 ? "validate invalid" : "")  %>
+    <%= form.label :address %>
+    <% user.errors[:address].each do |message| %>
+      <span class="helper-text" data-error="Address <%= message %>"></span>
+    <% end %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.submit 'Submit', class: "btn-flat teal lighten-5" %>
 <% end %>
