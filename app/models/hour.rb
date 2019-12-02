@@ -2,6 +2,8 @@ class Hour < ApplicationRecord
   belongs_to :arena
   has_many :schedules
 
+  validates_presence_of :arena, :date, :time, :cost
+
   def status?(user_id)
     schedules.where(:user_id => user_id).where(:status => 'true').count != 0
   end

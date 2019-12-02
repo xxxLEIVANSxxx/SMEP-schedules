@@ -13,6 +13,7 @@
 //= require rails-ujs
 //= require jquery3
 //= require jquery_ujs
+//= require jquery.mask
 //= require materialize
 //= require materialize-form
 //= require activestorage
@@ -23,6 +24,10 @@
 
 $(document).ready(function() {
     M.AutoInit();
+    $('#user_cpf').mask('999.999.999-99');
+    $('#hour_date').mask('99-99-9999');
+    $('#hour_time').mask('99');
+    $('#hour_cost').mask('999');
 
     fixBugsDeviseMaterialize();    
 });

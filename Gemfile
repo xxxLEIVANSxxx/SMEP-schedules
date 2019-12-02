@@ -17,6 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 
 gem 'jquery-rails'
+gem 'jquery_mask_rails' , '~> 0.1.0'
 gem 'momentjs-rails'
 
 gem 'fullcalendar'
