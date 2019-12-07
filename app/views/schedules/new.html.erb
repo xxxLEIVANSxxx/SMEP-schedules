@@ -6,12 +6,26 @@
     </div>    
 </header>
 
-<p class="header">Click on the available hour in the calendar of the desired arena.</p>
+<p class="header">Select the desired arena and choose an available time.</p>
 
-<% @arenas.each do |arena| %>
-    <p class="header right"><%= @date.strftime('%B of %Y') %></p> 
-    <%= sync partial: 'arena', resource: arena %>
-    <p class="header"><%= arena.name %></p> 
-<% end %>
+<div class="row">
+    <div class="col s12">
+        <ul class="tabs">
+            <% @arenas.each do |arena| %>    
+                <li class="tab"><a href="#arena_<%= arena.id %>"><%= arena.name %></a></li>    
+            <% end %>
+        </ul>
+    </div>
+    <% @arenas.each do |arena| %>
+        <p></p>
+        <div id="arena_<%= arena.id %>" class="col s12">    
+            <p class="header right"><%= @date.strftime('%B of %Y') %></p>
+            <%= sync partial: 'arena', resource: arena %>
+            <p class="header"><%= arena.name %></p>
+        </div
+    <% end %>
+</div>
+
+ 
 
 <%= render 'form', schedule: @schedule %>
