@@ -1,6 +1,7 @@
 <h1 class="header">Schedules</h1>
-
-<%= link_to 'New Schedule', new_schedule_path, class: "btn-flat teal lighten-5" %>
+<% if !current_user.admin %>
+  <%= link_to 'New Schedule', new_schedule_path, class: "btn-flat teal lighten-5" %>
+<% end %>
 
 <table class="highlight">
   <thead>
@@ -26,13 +27,13 @@
         <td><%= schedule.hour.date! %></td>
         <td><%= schedule.hour.period! %></td>
         <td><%= schedule.status! %></td>
-        <% if !schedule.payment_status? %>
+        <% if !schedule.payment_status? && current_user.admin %>
           <td>
             <%= form_with(model: schedule.payments.new, local: true) do |form| %>
               <%= form.hidden_field :schedule_id, value: schedule.id %>
               <%= form.hidden_field :form, value: "Credit Card"  %>
               <%= form.hidden_field :value, value: schedule.hour.cost  %>
-              <%= form.submit "Pay schedule", class: "btn-flat deep-orange accent-1" %>
+              <%= form.submit "Confirm payment", class: "btn-flat deep-orange accent-1" %>
             <% end %>
           </td>
         <% elsif schedule.status? %>

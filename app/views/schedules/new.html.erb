@@ -6,7 +6,12 @@
     </div>    
 </header>
 
-<p class="header">Select the desired arena and choose an available time.</p>
+<% if @arenas.empty? %>
+    <p class="header">No registered arena.</p>
+    <%= link_to 'New Arena', new_arena_path, class: "btn-flat teal lighten-5" %>
+<% else %>
+    <p class="header">Select the desired arena and choose an available time.</p>
+<% end %>
 
 <div class="row">
     <div class="col s12">

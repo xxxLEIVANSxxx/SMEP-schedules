@@ -30,7 +30,6 @@ class ArenasController < ApplicationController
 
     respond_to do |format|
       if @arena.save
-        sync_new @arena
         format.html { redirect_to arenas_url, notice: 'Arena was successfully created.' }
         format.json { render :show, status: :created, location: @arena }
       else
