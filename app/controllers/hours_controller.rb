@@ -5,6 +5,9 @@ class HoursController < ApplicationController
   # GET /hours
   # GET /hours.json
   def index
+    @hour = Hour.new
+    @date = Date.current
+    @arenas = Arena.all
     @hours = Hour.all.order(date: :desc)
   end
 
@@ -27,18 +30,27 @@ class HoursController < ApplicationController
   # POST /hours
   # POST /hours.json
   def create
-    @hour = Hour.new(hour_params)    
-
-    respond_to do |format|
-      if @hour.save
-        format.html { redirect_to hours_url, notice: 'Hour was successfully created.' }
-        format.json { render :show, status: :created, location: @hour }
-      else
-        @arenas = Arena.all
-        format.html { render :new }
-        format.json { render json: @hour.errors, status: :unprocessable_entity }
-      end
+    
+    params[:date].each do |date|
+      @hour = Hour.new(hour_params)
+      @hour.date = date
+      @hour.save
     end
+    respond_to do |format|
+      format.html { redirect_to hours_url, notice: 'Hour was successfully created.' }
+      format.json { render :show, status: :created, location: @hour }
+    end
+
+    # respond_to do |format|
+    #   if @hour.save
+    #     format.html { redirect_to hours_url, notice: 'Hour was successfully created.' }
+    #     format.json { render :show, status: :created, location: @hour }
+    #   else
+    #     @arenas = Arena.all
+    #     format.html { render :new }
+    #     format.json { render json: @hour.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /hours/1

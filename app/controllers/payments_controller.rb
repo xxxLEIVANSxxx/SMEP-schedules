@@ -20,7 +20,7 @@ class PaymentsController < ApplicationController
           format.json { render json: @payment.errors, status: :unprocessable_entity }
         end
       else
-        format.html { redirect_to schedules_url, notice: 'You already have two current appointments.' }
+        format.html { redirect_to schedules_url, notice: 'Already have two current appointments.' }
         format.json { render json: @payment, status: :unprocessable_entity }
       end
     end
