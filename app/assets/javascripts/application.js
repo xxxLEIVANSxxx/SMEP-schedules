@@ -19,7 +19,6 @@
 //= require activestorage
 //= require turbolinks
 //= require calendar
-//= require sync
 //= require_tree .
 
 $(document).ready(function() {
