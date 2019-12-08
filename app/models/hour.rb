@@ -13,6 +13,10 @@ class Hour < ApplicationRecord
     schedules.where(:status => 'true').count == 0
   end
 
+  def user_scheduled
+    schedules.where(status: 'true').first.user
+  end
+
   def period!
     "#{time.hour}:00h as #{time.hour+1}:00h"
   end

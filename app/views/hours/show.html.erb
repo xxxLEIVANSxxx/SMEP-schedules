@@ -1,0 +1,38 @@
+<p>
+  <strong>Date:</strong>
+  <%= @hour.date! %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @hour.period! %>
+</p>
+
+<p>
+  <strong>Cost:</strong>
+  R$ <%= @hour.cost %>
+</p>
+
+<p>
+  <strong>Arena:</strong>
+  <%= @hour.arena.name %>
+</p>
+
+<% if !@hour.available? %>
+  ---------------------------------------------------
+  <br>
+  <strong>Scheduled to:</strong>
+  <%= @hour.user_scheduled.name %>
+  <br>
+  email: <%= @hour.user_scheduled.email %>
+  <br>
+  address: <%= @hour.user_scheduled.address %>
+  <br>
+  <br>
+  <%= link_to 'Back', hours_path, :class => "btn-flat blue lighten-5" %>
+<% else %>
+  <%= link_to 'Back', hours_path, :class => "btn-flat blue lighten-5" %>
+  <%= link_to 'Edit', edit_hour_path(@hour), :class => "btn-flat blue lighten-5" %>
+  <%= link_to 'Destroy', @hour, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn-flat deep-orange accent-1" %>
+<% end %>
+

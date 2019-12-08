@@ -1,0 +1,74 @@
+<p class="header right"><%= @date.strftime('%B of %Y') %></p>
+<div id="calendar-arena-<%= arena.id %>"></div>
+<script>
+    $("#calendar-arena-<%= arena.id %>").fullCalendar({
+        locale: 'en',
+        schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
+        events: [
+            <% (@date..@date.end_of_month).each do |date| %>
+                {
+                    title: '+ Add hour',
+                    start: '<%= date %>',
+                    color: '#fff'
+                },
+            <% end %>     
+            <% arena.current_hours.each do |hour| %>
+                {
+                    id: '<%= hour.id %>',
+                    title: '<%= hour.period! %>',
+                    start: '<%= hour.date %>',
+                    <% if !hour.available? %>
+                        color: '#e0e0e0',
+                        textColor: '#e0e0e0'
+                    <% end %>
+                },
+            <% end %>
+            
+        ],
+        eventClick: function(calEvent, jsEvent, view) {
+            if(calEvent.id) {
+                window.location.href += "/" + calEvent.id;
+            } else {
+                let chips = $('#chips-<%= arena.id %>');
+                let instance = M.Chips.getInstance(chips);
+                let date =  new Date(calEvent.start);
+                date.setDate(date.getDate() + 1);
+                instance.addChip({tag: date.toDateString()});
+                let form = $('#hour_form-<%= arena.id %>');
+                form.html("<input type='hidden' name='date[]' value='" + date.getDate() + "-" + (date.getMonth()+1) + "-" + date.getFullYear() + "'>" + form.html());
+            }
+        }
+    });
+
+    $('.chips').chips({
+        onChipAdd: () => { alert('teste') }
+    });
+</script>
+<p class="header">Select days with "Add hour" on calendar</p>
+<div class="chips" id="chips-<%= arena.id %>">
+    <input disabled>
+</div>
+
+<%= form_with(model: @hour, local: true, :html => { :id => "hour_form-#{arena.id}" }) do |form| %>
+    <%= form.hidden_field :arena_id, value: arena.id %>
+
+    <div class="input-field col s12">
+        <i class="material-icons prefix">hourglass_empty</i>
+        <%= form.text_field :time, :class => (@hour.errors[:time].count != 0 ? "validate invalid" : ""), id: "time_arena-#{arena.id}"  %>
+        <%= form.label :time, for: "time_arena-#{arena.id}" %>
+        <% @hour.errors[:time].each do |message| %>
+        <span class="helper-text" data-error="Time <%= message %>"></span>
+        <% end %>
+    </div>
+
+    <div class="input-field col s12">
+        <i class="material-icons prefix">attach_money</i>
+        <%= form.text_field :cost, :class => (@hour.errors[:cost].count != 0 ? "validate invalid" : ""), id: "cost_arena-#{arena.id}"  %>
+        <%= form.label :cost, for: "cost_arena-#{arena.id}" %>
+        <% @hour.errors[:cost].each do |message| %>
+        <span class="helper-text" data-error="Cost <%= message %>"></span>
+        <% end %>
+    </div>
+
+    <%= form.submit 'Submit', class: "btn-flat teal lighten-5" %>
+<% end %>

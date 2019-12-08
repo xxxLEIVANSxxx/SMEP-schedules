@@ -161,7 +161,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
           var index = $chip.index();
           if (clickedClose) {
             // delete chip
-            this.deleteChip(index);
+            this.deleteChip(index - 1);
             this.$input[0].focus();
           } else {
             // select chip
@@ -406,9 +406,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         this._setPlaceholder();
 
         // fire chipDelete callback
-        if (typeof this.options.onChipDelete === 'function') {
-          this.options.onChipDelete.call(this, this.$el, $chip[0]);
-        }
+        
+        this.options.onChipDelete.call(this, this.$el, $chip[0]);
       }
 
       /**
