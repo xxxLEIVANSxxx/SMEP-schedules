@@ -2,7 +2,7 @@ class Arena < ApplicationRecord
     has_many :hours
     validates_presence_of :name, :address
 
-    sync :all
+    #sync :all
 
 
     def current_hours
