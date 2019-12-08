@@ -29,27 +29,27 @@ $(document).ready(function() {
     $('#hour_time').mask('99');
     $('#hour_cost').mask('999');
 
-    fixBugsDeviseMaterialize();    
+    //fixBugsDeviseMaterialize();    
 });
 
 // TO DO
-function fixBugsDeviseMaterialize() {
-    let div = $('.field_with_errors').parent();
-    let elements = [];
-    let i = 0;
-    $('.field_with_errors').each(function() {
-        elements[i] = $(this).html();
-        i++;
-    });
-    div.find('div').remove();
-    i=0;
-    $('.input-field').each(function() {
-        if(i < elements.length) {
-            let html = $(this).html().split("</i>");
-            html[0] += "</i>";
-            $(this).html(html[0] + elements[i] + elements[i+1] + html[1]);
-        }
-        i += 2;
-    });
-    $('.character-counter').remove();
-}
+// function fixBugsDeviseMaterialize() {
+//     let div = $('.field_with_errors').parent();
+//     let elements = [];
+//     let i = 0;
+//     $('.field_with_errors').each(function() {
+//         elements[i] = $(this).html();
+//         i++;
+//     });
+//     div.find('div').remove();
+//     i=0;
+//     $('.input-field').each(function() {
+//         if(i < elements.length) {
+//             let html = $(this).html().split("</i>");
+//             html[0] += "</i>";
+//             $(this).html(html[0] + elements[i] + elements[i+1] + html[1]);
+//         }
+//         i += 2;
+//     });
+//     $('.character-counter').remove();
+// }
