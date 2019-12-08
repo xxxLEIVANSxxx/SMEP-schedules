@@ -16,7 +16,7 @@
     <% @arenas.each do |arena| %>
         <p></p>
         <div id="arena_<%= arena.id %>" class="col s12">
-          <%= sync partial: 'arena-admin', resource: arena %>            
+          <%= render partial: 'arena-admin', locals: { arena: arena } %>
         </div
     <% end %>
 </div>

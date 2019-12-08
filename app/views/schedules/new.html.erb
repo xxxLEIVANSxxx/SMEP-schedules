@@ -25,7 +25,7 @@
         <p></p>
         <div id="arena_<%= arena.id %>" class="col s12">    
             <p class="header right"><%= @date.strftime('%B of %Y') %></p>
-            <%= sync partial: 'arena', resource: arena %>
+            <%= render partial: 'arena', locals: { arena: arena } %>
             <p class="header"><%= arena.name %></p>
         </div
     <% end %>
