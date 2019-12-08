@@ -39,14 +39,11 @@
             }
         }
     });
-
-    $('.chips').chips({
-        onChipAdd: () => { alert('teste') }
-    });
 </script>
-<p class="header">Select days with "Add hour" on calendar</p>
+<h4 class="header">New hours</h4>
 <div class="chips" id="chips-<%= arena.id %>">
     <input disabled>
+    <span class="helper-text">select days with "Add hour" on calendar</span>
 </div>
 
 <%= form_with(model: @hour, local: true, :html => { :id => "hour_form-#{arena.id}" }) do |form| %>
@@ -56,8 +53,9 @@
         <i class="material-icons prefix">hourglass_empty</i>
         <%= form.text_field :time, :class => (@hour.errors[:time].count != 0 ? "validate invalid" : ""), id: "time_arena-#{arena.id}"  %>
         <%= form.label :time, for: "time_arena-#{arena.id}" %>
+        <span class="helper-text">example: 20 for a time from 8 pm to 9 pm</span>
         <% @hour.errors[:time].each do |message| %>
-        <span class="helper-text" data-error="Time <%= message %>"></span>
+            <span class="helper-text" data-error="Time <%= message %>"></span>
         <% end %>
     </div>
 
